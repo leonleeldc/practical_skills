@@ -278,25 +278,6 @@ object CalculateQueryStoreEntityCoverage {
     S3Utils.joinPath(output, "samples")
   }
 
-  /**
-   [info] compiling 3 Scala sources to /Users/dili/Documents/workspace/clean_spark_product_knowledge/spark-product-knowledge/apps/analysis/target/scala-2.11/classes ...
-[info] 2 file(s) merged using strategy 'First' (Run the task at debug level to see the details)
-[info] 125 file(s) merged using strategy 'Discard' (Run the task at debug level to see the details)
-[error] /Users/dili/Documents/workspace/clean_spark_product_knowledge/spark-product-knowledge/apps/analysis/src/main/scala/com/coupang/search/pk/CalculateQueryStoreEntityCoverage.scala:255:8: overloaded method value filter with alternatives:
-[error]   (func: org.apache.spark.api.java.function.FilterFunction[org.apache.spark.sql.Row])org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
-[error]   (func: org.apache.spark.sql.Row => Boolean)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
-[error]   (conditionExpr: String)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] <and>
-[error]   (condition: org.apache.spark.sql.Column)org.apache.spark.sql.Dataset[org.apache.spark.sql.Row]
-[error]  cannot be applied to (Boolean)
-[error]       .filter(col("dt") == "latest")
-[error]        ^
-[error] one error found
-[info] Built: /Users/dili/Documents/workspace/clean_spark_product_knowledge/spark-product-knowledge/core/target/scala-2.11/pk-core-assembly-1.0.jar
-[info] Jar hash: caab540b11f9471e1801a061918089680ad884e5
-[error] (analysis / Compile / compileIncremental) Compilation failed
-[error] Total time: 12 s, completed Mar 9, 2023, 6:05:06 PM
-   *
-  /
   def main(args: Array[String]): Unit = {
     val config = parseArgs(args)
     implicit val spark: SparkSession =
