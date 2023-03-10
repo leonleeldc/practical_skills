@@ -181,25 +181,25 @@ object CalculateQueryStoreEntityCoverage {
         "topProducts1m",
         udfGetTopProductsNames(col("top_products_1m"))
       )
-      // .withColumn(
-      //   "storeQueryEntity",
-      //   udfGetStoreQueryEntitiesStats(
-      //     col("query_model_entity_exposes_2w"),
-      //     col("query_model_entity_purchases_2w"),
-      //     col("query_brand_entity_purchases_2w"),
-      //     col("query_brand_entity_exposes_3m"),
-      //     col("query_brand_entity_clicks_3m"),
-      //     col("query_flavor_entity_clicks_2w"),
-      //     col("query_package_type_entity_clicks_2w"),
-      //     col("query_type_entity_purchases_2w"),
-      //     col("query_type_entity_exposes_2w"),
-      //     col("customer_entity_query_feature_3m"),
-      //     col("solr_customer_clicked_entity_preference_realtime"),
-      //     col("solr_customer_clicked_entity_preference"),
-      //     col("solr_customer_query_entity_preference_3m"),
-      //     col("solr_customer_purchased_entity_preference")
-      //   )
-      // )
+      .withColumn(
+        "storeQueryEntity",
+        udfGetStoreQueryEntitiesStats(
+          col("query_model_entity_exposes_2w"),
+          col("query_model_entity_purchases_2w"),
+          col("query_brand_entity_purchases_2w"),
+          col("query_brand_entity_exposes_3m"),
+          col("query_brand_entity_clicks_3m"),
+          col("query_flavor_entity_clicks_2w"),
+          col("query_package_type_entity_clicks_2w"),
+          col("query_type_entity_purchases_2w"),
+          col("query_type_entity_exposes_2w"),
+          col("customer_entity_query_feature_3m"),
+          col("solr_customer_clicked_entity_preference_realtime"),
+          col("solr_customer_clicked_entity_preference"),
+          col("solr_customer_query_entity_preference_3m"),
+          col("solr_customer_purchased_entity_preference")
+        )
+      )
       .withColumn(
         "queryEntities",
         udfGetStoreQueryEntities(
@@ -252,7 +252,7 @@ object CalculateQueryStoreEntityCoverage {
   def getSearchQueryJoinTable()(implicit spark: SparkSession): DataFrame = {
     spark
       .table(SEARCH_QUERY_JOIN_TABLE)
-      .filter(col("dt") == "latest")
+      .filter(col("dt").equalTo("latest"))
       .select(
         col("query"),
         col("query_entities"),
